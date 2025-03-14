@@ -1,8 +1,10 @@
 require_relative 'client'
 
 class PersonClient
-  def initialize(username:, password:, company_key:, log_level:, base_url: 'https://public-api.vibescm.com')
-    @client = Client.new(username: username, password: password, base_url: base_url).client(log_level: log_level)
+  include VibesClientSettings
+
+  def initialize(company_key:, log_level:)
+    @client = Client.new(username: username, password: password, base_url: api_url).client(log_level: log_level)
     @company_key = company_key
   end
 

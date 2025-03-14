@@ -1,8 +1,10 @@
 require_relative 'client'
 
 class AcquisitionCampaignClient
-  def initialize(username:, password:, company_key:, base_url: 'https://public-api.vibescm.com')
-    @client = Client.new(username: username, password: password, base_url: base_url).client
+  include VibesClientSettings
+
+  def initialize(company_key:)
+    @client = Client.new(username: username, password: password, base_url: api_url).client
     @company_key = company_key
   end
 

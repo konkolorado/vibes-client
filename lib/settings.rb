@@ -1,13 +1,17 @@
-class VibesClientSettings
-  def self.username
+module VibesClientSettings
+  def username
     ENV['VIBES_USERNAME']
   end
 
-  def self.password
+  def password
     ENV['VIBES_PASSWORD']
   end
 
-  def self.company_key
+  def company_key
     ENV['VIBES_COMPANY_KEY']
+  end
+
+  def api_url
+    ENV['VIBES_API_URL']
   end
 end

@@ -1,0 +1,24 @@
+#!/usr/bin/env ruby
+
+require 'thor'
+require 'vibes_client'
+require 'json'
+
+require_relative 'wallet_campaign'
+require_relative 'person'
+require_relative 'subscription'
+
+class VBC < Thor
+  class_option :verbose, type: :boolean
+
+  desc 'wallet SUBCOMMAND ...ARGS', 'interact with a wallet campaign'
+  subcommand 'wallet', WalletCampaign
+
+  desc 'person SUBCOMMAND ...ARGS', 'interact with a person record'
+  subcommand 'person', Person
+
+  desc 'subscription SUBCOMMAND ...ARGS', 'interact with subscriptions'
+  subcommand 'subscription', Subscription
+end
+
+VBC.start(ARGV)

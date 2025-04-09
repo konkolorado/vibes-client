@@ -4,9 +4,10 @@ require 'thor'
 require 'vibes_client'
 require 'json'
 
-require_relative 'wallet_campaign'
+require_relative 'callback'
 require_relative 'person'
 require_relative 'subscription'
+require_relative 'wallet_campaign'
 
 class VBC < Thor
   class_option :verbose, type: :boolean
@@ -19,6 +20,9 @@ class VBC < Thor
 
   desc 'subscription SUBCOMMAND ...ARGS', 'interact with subscriptions'
   subcommand 'subscription', Subscription
+
+  desc 'callback SUBCOMMAND ...ARGS', 'interact with callbacks'
+  subcommand 'callback', Callback
 end
 
 VBC.start(ARGV)

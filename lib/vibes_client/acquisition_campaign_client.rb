@@ -11,12 +11,9 @@ class AcquisitionCampaignClient
   def add_participant(campaign_id, phone, custom_fields = {})
     endpoint = "/companies/#{@company_key}/campaigns/acquisition/#{campaign_id}/participants"
     payload = {
-      mobile_phone: {
-        "mdn": phone
-      },
+      mobile_phone: { "mdn": phone },
       "custom_fields": custom_fields
     }
-    p payload
     @client.post(endpoint, payload)
   end
 

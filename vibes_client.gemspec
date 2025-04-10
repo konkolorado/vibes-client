@@ -10,5 +10,5 @@ Gem::Specification.new do |s|
   s.license = 'Apache-2.0'
   s.required_ruby_version = Gem::Requirement.new('>= 3.0.0')
   s.executables << 'vbc'
-  s.files = ['lib/vibes_client.rb', 'lib/vibes_client/client.rb']
+  s.files = Dir['lib/**/*.rb'] + Dir['bin/*']
 end

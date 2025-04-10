@@ -29,6 +29,14 @@ class Callback < Thor
     puts JSON.pretty_generate(callbacks.body)
   end
 
+  desc 'cancel COMPANY_KEY CALLBACK_ID', 'Cancel a callback'
+  def cancel(company_key, callback_id)
+    log_level = options[:verbose] ? :debug : :warn
+    cc = CallbacksClient.new(company_key: company_key, log_level: log_level)
+    callbacks = cc.cancel(callback_id)
+    puts JSON.pretty_generate(callbacks.body)
+  end
+
   desc 'register', 'Register callbacks for a company'
   subcommand 'register', Register
 end

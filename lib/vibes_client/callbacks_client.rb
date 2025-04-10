@@ -13,6 +13,11 @@ class CallbacksClient
     @client.get(endpoint)
   end
 
+  def cancel(callback_id)
+    endpoint = "/companies/#{@company_key}/config/callbacks/#{callback_id}"
+    @client.delete(endpoint)
+  end
+
   def register(body)
     endpoint = "/companies/#{@company_key}/config/callbacks/"
     @client.post(endpoint, body)

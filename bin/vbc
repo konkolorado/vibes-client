@@ -10,6 +10,8 @@ require_relative 'subscription'
 require_relative 'wallet_campaign'
 
 class VBC < Thor
+  def self.exit_on_failure? = true
+
   class_option :verbose, type: :boolean
 
   desc 'wallet SUBCOMMAND ...ARGS', 'interact with a wallet campaign'

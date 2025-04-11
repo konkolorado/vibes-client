@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'thor'
 require 'vibes_client'
 require_relative 'subcommand'

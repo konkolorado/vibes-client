@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'settings'
 require 'vibes_client/acquisition_campaign_client'
 require 'vibes_client/callbacks_client'

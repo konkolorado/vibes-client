@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module VibesClientSettings
   def username
     ENV['VIBES_USERNAME']

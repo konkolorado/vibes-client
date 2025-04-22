@@ -9,6 +9,7 @@ require_relative 'callback'
 require_relative 'person'
 require_relative 'subscription'
 require_relative 'wallet_campaign'
+require_relative 'scripts'
 
 class VBC < Thor
   def self.exit_on_failure? = true
@@ -26,6 +27,9 @@ class VBC < Thor
 
   desc 'callback SUBCOMMAND ...ARGS', 'interact with callbacks'
   subcommand 'callback', Callback
+
+  desc 'scripts SUBCOMMAND ...ARGS', 'run helper scripts'
+  subcommand 'scripts', Scripts
 end
 
 VBC.start(ARGV)

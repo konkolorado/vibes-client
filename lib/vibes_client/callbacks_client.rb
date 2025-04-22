@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative 'client'
+require_relative "client"
 
 class CallbacksClient
   include VibesClientSettings
@@ -27,43 +27,43 @@ class CallbacksClient
 
   def register_subscription_added_callback(list_id:, url:, start_date: nil, end_date: nil)
     body = SubscriptionAddedCallbackBody.new(destination: DestinationBody.new(url: url),
-                                             list_id: list_id,
-                                             start_date: start_date,
-                                             end_date: end_date).to_h
+      list_id: list_id,
+      start_date: start_date,
+      end_date: end_date).to_h
 
     register(body)
   end
 
   def register_subscription_removed_callback(list_id:, url:, start_date: nil, end_date: nil)
     body = SubscriptionRemovedCallbackBody.new(destination: DestinationBody.new(url: url),
-                                               list_id: list_id,
-                                               start_date: start_date,
-                                               end_date: end_date).to_h
+      list_id: list_id,
+      start_date: start_date,
+      end_date: end_date).to_h
 
     register(body)
   end
 
   def register_wallet_installed_callback(wallet_id:, url:, start_date: nil, end_date: nil)
     body = WalletAddedCallbackBody.new(destination: DestinationBody.new(url: url),
-                                       wallet_id: wallet_id,
-                                       start_date: start_date,
-                                       end_date: end_date).to_h
+      wallet_id: wallet_id,
+      start_date: start_date,
+      end_date: end_date).to_h
 
     register(body)
   end
 
   def register_wallet_removed_callback(wallet_id:, url:, start_date: nil, end_date: nil)
     body = WalletRemovedCallbackBody.new(destination: DestinationBody.new(url: url),
-                                         wallet_id: wallet_id,
-                                         start_date: start_date,
-                                         end_date: end_date).to_h
+      wallet_id: wallet_id,
+      start_date: start_date,
+      end_date: end_date).to_h
 
     register(body)
   end
 end
 
 class DestinationBody
-  def initialize(url:, method: 'POST', content_type: 'application/json')
+  def initialize(url:, method: "POST", content_type: "application/json")
     @url = url
     @method = method
     @content_type = content_type
@@ -88,8 +88,8 @@ class SubscriptionCallbackBody
 
   def to_h
     result = {
-      callback_type: @callback_type,
-      destination: @destination.to_h,
+      :callback_type => @callback_type,
+      :destination => @destination.to_h,
       @callback_type => {
         list_id: @list_id
       }
@@ -102,15 +102,15 @@ end
 
 class SubscriptionAddedCallbackBody < SubscriptionCallbackBody
   def initialize(*args, **kwargs)
-    @callback_type = 'subscription_added'
-    super(*args, **kwargs)
+    @callback_type = "subscription_added"
+    super
   end
 end
 
 class SubscriptionRemovedCallbackBody < SubscriptionCallbackBody
   def initialize(*args, **kwargs)
-    @callback_type = 'subscription_removed'
-    super(*args, **kwargs)
+    @callback_type = "subscription_removed"
+    super
   end
 end
 
@@ -124,8 +124,8 @@ class WalletCallbackBody
 
   def to_h
     result = {
-      callback_type: @callback_type,
-      destination: @destination.to_h,
+      :callback_type => @callback_type,
+      :destination => @destination.to_h,
       @callback_type => {
         campaign_token: @wallet_id
       }
@@ -138,14 +138,14 @@ end
 
 class WalletAddedCallbackBody < WalletCallbackBody
   def initialize(*args, **kwargs)
-    @callback_type = 'wallet_item_install'
-    super(*args, **kwargs)
+    @callback_type = "wallet_item_install"
+    super
   end
 end
 
 class WalletRemovedCallbackBody < WalletCallbackBody
   def initialize(*args, **kwargs)
-    @callback_type = 'wallet_item_remove'
-    super(*args, **kwargs)
+    @callback_type = "wallet_item_remove"
+    super
   end
 end

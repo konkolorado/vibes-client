@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require_relative 'client'
-require_relative '../settings'
+require_relative "client"
+require_relative "../settings"
 
 class WalletCampaignClient
   include VibesClientSettings

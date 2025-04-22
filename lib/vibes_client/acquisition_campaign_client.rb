@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative 'client'
+require_relative "client"
 
 class AcquisitionCampaignClient
   include VibesClientSettings
@@ -13,8 +13,8 @@ class AcquisitionCampaignClient
   def add_participant(campaign_id, phone, custom_fields = {})
     endpoint = "/companies/#{@company_key}/campaigns/acquisition/#{campaign_id}/participants"
     payload = {
-      mobile_phone: { "mdn": phone },
-      "custom_fields": custom_fields
+      mobile_phone: {mdn: phone},
+      custom_fields: custom_fields
     }
     @client.post(endpoint, payload)
   end

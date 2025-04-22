@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require 'faraday'
-require 'faraday/request'
+require "faraday"
+require "faraday/request"
 
 class Client
   def initialize(username:, password:, base_url:)

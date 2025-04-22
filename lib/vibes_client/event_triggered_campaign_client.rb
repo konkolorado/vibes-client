@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative 'client'
+require_relative "client"
 
 class EventTriggeredCampaignClient
   include VibesClientSettings
@@ -17,7 +17,7 @@ class EventTriggeredCampaignClient
 
   def trigger_event(event:, data:)
     endpoint = "companies/#{@company_key}/events"
-    payload = { event_type: event, event_data: data }
+    payload = {event_type: event, event_data: data}
     @client.post(endpoint, payload)
   end
 end

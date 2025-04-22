@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative 'client'
+require_relative "client"
 
 class PersonClient
   include VibesClientSettings
@@ -11,7 +11,7 @@ class PersonClient
   end
 
   def get_by_mdn(mdn)
-    params = { mdn: mdn }
+    params = {mdn: mdn}
     endpoint = "/companies/#{@company_key}/mobiledb/persons"
     @client.get(endpoint, params)
   end
@@ -28,11 +28,11 @@ class PersonClient
 
   def remove_external_person_id_by_person_key(key)
     endpoint = "/companies/#{@company_key}/mobiledb/persons/#{key}"
-    @client.put(endpoint, { external_person_id: nil })
+    @client.put(endpoint, {external_person_id: nil})
   end
 
   def add_external_person_id_by_person_key(key, external_person_id)
     endpoint = "/companies/#{@company_key}/mobiledb/persons/#{key}"
-    @client.put(endpoint, { external_person_id: external_person_id })
+    @client.put(endpoint, {external_person_id: external_person_id})
   end
 end

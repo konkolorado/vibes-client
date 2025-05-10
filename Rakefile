@@ -32,4 +32,7 @@ task :build_and_install do
   # Install the gem locally
   gem_file = "#{gem_name}-#{version}.gem"
   sh "RUBYOPT=-W0 gem install #{gem_file}", verbose: false
+
+  # Remove the build artifact
+  sh "rm #{gem_file}", verbose: false
 end

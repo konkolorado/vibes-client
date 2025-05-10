@@ -1,12 +1,16 @@
-# frozen_string_literal: true
+# typed: true
+
+require "sorbet-runtime"
+
+require_relative "../vibes_client/wallet_campaign_client"
+
+extend T::Sig
 
 # This function updates the IMAGE_CODE on wallet items in a given file to various values
-# of supported badge combinations. This is setup work to validate the monthly Local Legend
-# reset job.
-#
-# @param company_key [String] The Vibes company key
-# @param campaign_id [String] The wallet campaign id
-# @param filename [String] A filename containing a list of wallet item ids to set the badge on
+# of supported badge combinations
+sig do
+  params(company_key: String, campaign_id: String, filename: String).void
+end
 def add_ll_to_image_code(company_key, campaign_id, filename)
   valid_codes = ["FB_FF_LL", "FB_FF_LL_SS", "FB_LL", "FB_LL_SS"]
   wc = WalletCampaignClient.new(company_key: company_key, log_level: :warn)

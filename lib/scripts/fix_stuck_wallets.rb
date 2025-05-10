@@ -1,15 +1,17 @@
-# frozen_string_literal: true
+# typed: true
+
+require_relative "../vibes_client/wallet_campaign_client"
+
+extend T::Sig
 
 # This function clears wallets that have a notification header set but no body. These wallets
 # are stuck in a state where the Vibes API is unable to send the wallet data to the Google
 # Wallet API meaning that all updates to wallet tokens will fail. This method will update
 # the notifications on those wallets by pushing a valid notification body.
 # Note: The Platform team has since fixed this issue and wallet notification changes will no
-# longer be accepted if the notification body is empty.
-#
-# @param company_key [String] The Vibes company key
-# @param campaign_id [String] The wallet campaign id
-# @param filename [String] A filename containing a list of wallet item ids that are stuck
+# longer be accepted if the notification body is empty. The provided filename should contain
+# a list of wallet item ids that are unstuck.
+sig { params(company_key: String, campaign_id: String, filename: String).returns(T.untyped) }
 def fix_stuck_wallets(company_key, campaign_id, filename)
   wc = WalletCampaignClient.new(company_key: company_key, log_level: :warn)
 
@@ -17,7 +19,7 @@ def fix_stuck_wallets(company_key, campaign_id, filename)
     google_wallet: {
       messages: {
         header: "Update",
-        body: "Craving Portillo's to get you through the week? We get it. Grab a bite & keep earning badges! 🍔"
+        body: "This is a test notification"
       }
     }
   }
@@ -26,7 +28,7 @@ def fix_stuck_wallets(company_key, campaign_id, filename)
     line = line.strip
 
     begin
-      wallet = wc.get_wallet_campaign_item_by_id(campaign_id, line)
+      wallet = wc.wallet_item(campaign_id, line)
     rescue Faraday::Error => e
       puts "Skipping wallet that can't be pulled: #{line}: #{e.message}"
       next

@@ -2,7 +2,7 @@
 
 require "thor"
 
-require_relative "../vibes_client/subscription_client"
+require_relative "../scripts/add_ll_to_image_code"
 
 class Scripts < Thor
   desc "clear-stuck-wallets COMPANY_KEY CAMPAIGN_ID FILE_NAME",

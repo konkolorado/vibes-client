@@ -3,10 +3,11 @@ require "vibes_client"
 require "json"
 
 require_relative "acquisition_campaign"
+require_relative "callback"
 require_relative "person"
-require_relative "wallet_campaign"
-require_relative "subscription"
 require_relative "scripts"
+require_relative "subscription"
+require_relative "wallet_campaign"
 
 class VBC < Thor
   def self.exit_on_failure? = true
@@ -28,7 +29,6 @@ class VBC < Thor
   desc "scripts SUBCOMMAND ...ARGS", "run helper scripts"
   subcommand "scripts", Scripts
 
-  # desc 'callback SUBCOMMAND ...ARGS', 'interact with callbacks'
-  # subcommand 'callback', Callback
-  #
+  desc "callback SUBCOMMAND ...ARGS", "interact with callbacks"
+  subcommand "callback", Callback
 end

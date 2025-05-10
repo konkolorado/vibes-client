@@ -4,5 +4,6 @@
 
 # typed: false
 
-module CallbacksClient::Client; end
+module ::Minitest::Test; end
 module EventTriggeredCampaignClient::Client; end
+module VibesClientTest::VibesClient; end

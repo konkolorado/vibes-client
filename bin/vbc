@@ -1,35 +1,8 @@
 #!/usr/bin/env ruby
-# frozen_string_literal: true
 
-require 'thor'
-require 'vibes_client'
 require 'json'
+require 'thor'
 
-require_relative 'callback'
-require_relative 'person'
-require_relative 'subscription'
-require_relative 'wallet_campaign'
-require_relative 'scripts'
-
-class VBC < Thor
-  def self.exit_on_failure? = true
-
-  class_option :verbose, type: :boolean
-
-  desc 'wallet SUBCOMMAND ...ARGS', 'interact with a wallet campaign'
-  subcommand 'wallet', WalletCampaign
-
-  desc 'person SUBCOMMAND ...ARGS', 'interact with a person record'
-  subcommand 'person', Person
-
-  desc 'subscription SUBCOMMAND ...ARGS', 'interact with subscriptions'
-  subcommand 'subscription', Subscription
-
-  desc 'callback SUBCOMMAND ...ARGS', 'interact with callbacks'
-  subcommand 'callback', Callback
-
-  desc 'scripts SUBCOMMAND ...ARGS', 'run helper scripts'
-  subcommand 'scripts', Scripts
-end
+require 'vibes_client'
 
 VBC.start(ARGV)

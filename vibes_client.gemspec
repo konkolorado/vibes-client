@@ -12,5 +12,5 @@ Gem::Specification.new do |s|
   s.license = "Apache-2.0"
   s.required_ruby_version = Gem::Requirement.new(">= 3.0.0")
   s.executables << "vbc"
-  s.files = Dir["lib/**/*.rb"] + Dir["bin/*"]
+  s.files = Dir["lib/**/*.rb"] + Dir["bin/vbc"]
 end

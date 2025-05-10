@@ -1,36 +1,38 @@
-# frozen_string_literal: true
+# typed: true
 
 require_relative "client"
-require_relative "../settings"
 
-class WalletCampaignClient
-  include VibesClientSettings
-
-  def initialize(company_key:, log_level:)
-    @client = Client.new(username: username, password: password, base_url: api_url).client(log_level: log_level)
-    @company_key = company_key
-  end
-
-  def list_campaigns
-    endpoint = "companies/#{@company_key}/campaigns/wallet"
+class WalletCampaignClient < BaseVibesApiClient
+  # Get all wallet campaigns for a company
+  sig { returns(Faraday::Response) }
+  def campaigns
+    endpoint = "/companies/#{@company_key}/campaigns/wallet"
     @client.get(endpoint)
   end
 
-  def get_wallet_campaign_by_id(id)
+  # Get a wallet campaign by id
+  sig { params(id: String).returns(Faraday::Response) }
+  def campaign(id)
     endpoint = "/companies/#{@company_key}/campaigns/wallet/#{id}"
     @client.get(endpoint)
   end
 
-  def get_wallet_campaign_items(id)
+  # Get all items in a wallet campaign
+  sig { params(id: String).returns(Faraday::Response) }
+  def wallet_items(id)
     endpoint = "/companies/#{@company_key}/campaigns/wallet/#{id}/items"
     @client.get(endpoint)
   end
 
-  def get_wallet_campaign_item_by_id(id, item_id)
+  # Get an item in a wallet campaign by its id
+  sig { params(id: String, item_id: String).returns(Faraday::Response) }
+  def wallet_item(id, item_id)
     endpoint = "/companies/#{@company_key}/campaigns/wallet/#{id}/items/#{item_id}"
     @client.get(endpoint)
   end
 
+  # Update an item in a wallet campaign
+  sig { params(id: String, item_id: String, data: Hash).returns(Faraday::Response) }
   def update_wallet_campaign_item_by_id(id, item_id, data)
     endpoint = "/companies/#{@company_key}/campaigns/wallet/#{id}/items/#{item_id}"
     @client.put(endpoint, data)

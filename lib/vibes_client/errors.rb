@@ -1,0 +1,3 @@
+require "faraday"
+
+VibesAPI = Faraday

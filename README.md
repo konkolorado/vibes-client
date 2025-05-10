@@ -17,3 +17,6 @@ Configure `irb`'s load path to use a local gem
 
 Run the bin CLI
 `ruby -Ilib ./bin/vbc`
+
+Periodically update type checked modules:
+`bin/tapioca todo`
